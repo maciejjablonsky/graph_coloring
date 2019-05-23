@@ -17,9 +17,6 @@ int main()
     {
         Graph graph;
         graph.load_graph_from_input_stream();
-        /*cout << graph.get_vertices_number() << ' ' << graph.adjacency_matrix << '\n';
-        n--;
-        continue;*/
 
         if (graph.connected_graph())
         {

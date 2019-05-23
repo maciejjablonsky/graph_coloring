@@ -15,19 +15,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac155cd1-0033-4cc0-a295-2e35f07ecf48" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/GraphVector.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GraphVector.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/VerticesSet.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/VerticesSet.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/maciek.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/maciek.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Graph.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graph.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graph.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Stack.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/old_main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/old_main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_main.cpp" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,11 +31,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Graph.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="30" column="35" lean-forward="true" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+            <state relative-caret-position="368">
+              <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
               <folding>
                 <element signature="e#94#111#0" expanded="true" />
               </folding>
@@ -52,22 +44,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/old_main.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="405" column="15" lean-forward="true" selection-start-line="395" selection-start-column="4" selection-end-line="405" selection-end-column="15" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="53" column="34" lean-forward="true" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
+            <state relative-caret-position="-101">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="e#41#60#0" expanded="true" />
               </folding>
@@ -78,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Graph.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="123" selection-start-line="123" selection-end-line="123" />
+            <state relative-caret-position="148">
+              <caret line="106" column="1" selection-start-line="106" selection-start-column="1" selection-end-line="106" selection-end-column="1" />
               <folding>
                 <element signature="e#41#59#0" expanded="true" />
               </folding>
@@ -156,11 +136,11 @@
         <option value="$PROJECT_DIR$/GraphVector.h" />
         <option value="$PROJECT_DIR$/splitting_subgraphs.txt" />
         <option value="$PROJECT_DIR$/GraphVector.cpp" />
-        <option value="$PROJECT_DIR$/main.cpp" />
-        <option value="$PROJECT_DIR$/Graph.h" />
-        <option value="$PROJECT_DIR$/Graph.cpp" />
         <option value="$PROJECT_DIR$/VerticesSet.h" />
         <option value="$PROJECT_DIR$/VerticesSet.cpp" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/Graph.cpp" />
+        <option value="$PROJECT_DIR$/Graph.h" />
       </list>
     </option>
   </component>
@@ -237,7 +217,7 @@
       <workItem from="1558450438162" duration="692000" />
       <workItem from="1558475784866" duration="8355000" />
       <workItem from="1558536715981" duration="164000" />
-      <workItem from="1558599144382" duration="27003000" />
+      <workItem from="1558599144382" duration="27832000" />
     </task>
     <task id="LOCAL-00001" summary="Little naming changes">
       <created>1558485786579</created>
@@ -246,11 +226,18 @@
       <option name="project" value="LOCAL" />
       <updated>1558485786579</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added classes GraphVector, VertexSet and macros for memory management">
+      <created>1558639480692</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1558639480693</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59476000" />
+    <option name="totallyTimeSpent" value="60305000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -271,12 +258,12 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3298969" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.33117723" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.4329897" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4329897" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298969" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.3234536" />
+      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.3234536" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32860824" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
@@ -314,7 +301,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Little naming changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Little naming changes" />
+    <MESSAGE value="Added classes GraphVector, VertexSet and macros for memory management" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added classes GraphVector, VertexSet and macros for memory management" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -326,17 +314,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Graph.cpp</url>
-          <line>120</line>
+          <line>112</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>33</line>
+          <line>30</line>
           <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>47</line>
+          <line>44</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
       </breakpoints>
@@ -454,16 +442,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Graph.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="30" column="35" lean-forward="true" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
-          <folding>
-            <element signature="e#94#111#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Stack.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -501,22 +479,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-101">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#41#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Graph.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="123" selection-start-line="123" selection-end-line="123" />
+        <state relative-caret-position="148">
+          <caret line="106" column="1" selection-start-line="106" selection-start-column="1" selection-end-line="106" selection-end-column="1" />
           <folding>
             <element signature="e#41#59#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/Graph.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="53" column="34" lean-forward="true" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
+        <state relative-caret-position="368">
+          <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
           <folding>
-            <element signature="e#41#60#0" expanded="true" />
+            <element signature="e#94#111#0" expanded="true" />
           </folding>
         </state>
       </provider>

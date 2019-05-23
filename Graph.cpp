@@ -106,14 +106,6 @@ bool Graph::zeros_on_diagonal() const
     return true;
 }
 
-size_t Graph::sizeOfGraph(void) const
-{
-    size_t size = 0;
-    size += sizeof adjacency_matrix;
-    size += sizeof vertices_number;
-    return size;
-}
-
 
 void Graph::load_subgraphs(void)
 {
