@@ -7,12 +7,16 @@
 #include "VerticesSet.h"
 #include "mem.h"
 
-Graph::Graph() : adjacency_matrix(nullptr), vertices_number(0), max_degree(0)
+Graph::Graph() : adjacency_matrix(nullptr), vertices_number(0), max_degree(0), number_of_subgraphs(0)
 {
 };
 
 Graph::~Graph(void)
 {
+    for (size_t i = 0; i < get_subgraphs_number(); ++i)
+    {
+        free(subgraphs.element_at(i));
+    }
     free(adjacency_matrix);
 }
 
@@ -139,7 +143,7 @@ void Graph::load_subgraphs(void)
         size_t *visited_vertices_numbers = vertices.get_numbers_of_visited_vertices(visited);
 
         create_subgraph_from_visited(visited_vertices_numbers, vertices.count_visited_vertices(visited));
-
+        number_of_subgraphs++;
         vertices.delete_visited_vertices(visited);
         vertices.free_visited_vertices_numbers(visited_vertices_numbers);
         vertices.free_visited(visited);
@@ -187,11 +191,7 @@ void Graph::set_vertices_number(size_t n)
 
 size_t Graph::get_subgraphs_number(void)
 {
-    if (subgraphs.empty())
-    {
-        load_subgraphs();
-    }
-    return subgraphs.get_size();
+    return number_of_subgraphs;
 }
 
 Graph *Graph::subgraph(size_t index)
