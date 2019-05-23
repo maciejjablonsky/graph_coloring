@@ -3,30 +3,27 @@
 //
 
 #include "Stack.h"
-#include <cstring>
+
+#include "mem.h"
 
 Stack::Stack() : size(2), next_value_index(0)
 {
-    values = new data_t[size];
+    values = calloc(data_t, size);
 }
 
 Stack::~Stack()
 {
-    delete[] values;
+    free(values);
 }
 
 void Stack::set_size()
 {
     if (next_value_index + 1 == size)
     {
-        data_t *new_values = new data_t[size * 2];
-        if (new_values)
-        {
-            memcpy(new_values, values, size * sizeof(data_t));
-            delete[]values;
-            values = new_values;
-            size *= 2;
-        }
+        size *= 2;
+        data_t * temp = realloc(values, data_t, size);
+        if (temp == nullptr) { free(temp); }
+        else { values = temp;}
     }
 }
 

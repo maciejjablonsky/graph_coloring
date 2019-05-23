@@ -16,6 +16,10 @@ int main()
     while (n > 0)
     {
         Graph graph;
+        graph.load_graph_from_input_stream();
+        /*cout << graph.get_vertices_number() << ' ' << graph.adjacency_matrix << '\n';
+        n--;
+        continue;*/
 
         if (graph.connected_graph())
         {
@@ -27,20 +31,29 @@ int main()
         }
         else
         {
-            cout << "False\n";
+            graph.load_subgraphs();
+            size_t subgraphs_number = graph.get_subgraphs_number();
+            size_t max_chromatic_number = 0;
+            for (size_t i = 0; i < subgraphs_number; ++i)
+            {
+                Graph *subgraph = graph.subgraph(i);
+                if (((subgraph->get_vertices_number() % 2 == 1) && subgraph->is_cycle()) || subgraph->is_complete())
+                {
+                    if (subgraph->get_max_degree() + 1 > max_chromatic_number)
+                    {
+                        max_chromatic_number = subgraph->get_max_degree() + 1;
+                    }
+                }
+            }
+            if (max_chromatic_number > graph.get_max_degree())
+            {
+                cout << "True\n";
+            }
+            else
+            {
+                cout << "False\n";
+            }
         }
-        /* else
-         {
-             if (subgraph_size > 0 && (((subgraph_size % 2 == 1) && is_cycle(subgraph, subgraph_size)) ||
-                                       is_complete(subgraph, subgraph_size)))
-             {
-                 cout << "True\n";
-             }
-             else
-             {
-                 cout << "False\n";
-             }
-             free(subgraph);*/
         --n;
     }
     return 0;

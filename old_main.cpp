@@ -1,4 +1,3 @@
-/*
 #include <iostream>
 #include <cstring>
 #include "Stack.h"
@@ -415,4 +414,4 @@ int count_degree_of_row(const char *const matrix, const int row, const int d)
         degree += matrix[row * d + i] == '1' ? 1 : 0;
     }
     return degree;
-}*/
+}
