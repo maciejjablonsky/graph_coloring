@@ -28,7 +28,6 @@ public:
     bool connected_graph(void) const;
     bool is_cycle(void) const;
     bool is_complete(void) const;
-    size_t sizeOfGraph(void) const;
     void load_subgraphs(void);
     size_t get_subgraphs_number(void);
     Graph * subgraph(size_t index);
