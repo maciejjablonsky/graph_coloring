@@ -13,12 +13,17 @@ class Graph
 private:
     GraphVector subgraphs;
     size_t vertices_number;
-    bool neighbours(size_t current, size_t neighbour) const;
-    bool zeros_on_diagonal(void) const;
-    Graph * create_subgraph_from_visited(size_t * visited_numbers, size_t visited_size);
-    void set_vertices_number(size_t n);
     size_t max_degree;
     char *adjacency_matrix;
+    size_t number_of_subgraphs;
+
+    bool neighbours(size_t current, size_t neighbour) const;
+
+    bool zeros_on_diagonal(void) const;
+
+    Graph *create_subgraph_from_visited(size_t *visited_numbers, size_t visited_size);
+
+    void set_vertices_number(size_t n);
 public:
 
     Graph();

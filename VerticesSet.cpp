@@ -101,6 +101,11 @@ void VerticesSet::free_visited_vertices_numbers(size_t *visited_vertices)
     free(visited_vertices);
 }
 
+VerticesSet::~VerticesSet()
+{
+    free(set);
+}
+
 
 
 

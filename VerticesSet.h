@@ -16,6 +16,8 @@ private:
     size_t i;
 public:
     VerticesSet(size_t n);
+
+    ~VerticesSet();
     size_t next_vertex(void);
     void delete_visited_vertices(bool *visited);
     bool * get_empty_visited_array(void);
