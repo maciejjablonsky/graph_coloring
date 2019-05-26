@@ -1,0 +1,21 @@
+set = vertices of graph
+
+while set not empty
+{
+    vertex = set.next_vertex
+    if vertex not visited {
+        mark as visited
+        stack.push(vertex)
+        while (stack not empty) {
+            v = stack.pop()
+            for each neighbour u of v {
+                if u not visited {
+                    mark as visited
+                    stack.push(u)
+                }
+            }
+        }
+        add subgraph based on visited vertices
+        delete visited vertices from set
+    }
+}
