@@ -11,13 +11,6 @@ class Graph;
 
 typedef struct graph_node graph_node_t;
 
-struct graph_node
-{
-    Graph *graph;
-    graph_node_t *next;
-    graph_node_t *prev;
-};
-
 
 class GraphVector
 {

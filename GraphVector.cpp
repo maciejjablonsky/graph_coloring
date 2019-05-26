@@ -6,6 +6,13 @@
 #include "Graph.h"
 #include "mem.h"
 
+struct graph_node
+{
+    Graph *graph;
+    graph_node_t *next;
+    graph_node_t *prev;
+};
+
 GraphVector::GraphVector(void): size(0), head(nullptr), tail(nullptr), current(nullptr), current_i(0)
 {
 }
