@@ -15,7 +15,7 @@ Graph::~Graph(void)
 {
     for (size_t i = 0; i < get_subgraphs_number(); ++i)
     {
-        free(subgraphs.element_at(i));
+        delete subgraphs.element_at(i);
     }
     free(adjacency_matrix);
 }
