@@ -45,7 +45,7 @@ bool Graph::connected_graph() const
     size_t vertex_count = 0;
     visited[0] = true;
     stack.push(0);
-    while (stack.empty() == false)
+    while (!stack.empty())
     {
         size_t current = stack.pop();
         vertex_count++;
