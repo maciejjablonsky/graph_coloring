@@ -28,21 +28,7 @@ int main()
         }
         else
         {
-            graph.load_subgraphs();
-            size_t subgraphs_number = graph.get_subgraphs_number();
-            size_t max_chromatic_number = 0;
-            for (size_t i = 0; i < subgraphs_number; ++i)
-            {
-                Graph *subgraph = graph.subgraph(i);
-                if (((subgraph->get_vertices_number() % 2 == 1) && subgraph->is_cycle()) || subgraph->is_complete())
-                {
-                    if (subgraph->get_max_degree() + 1 > max_chromatic_number)
-                    {
-                        max_chromatic_number = subgraph->get_max_degree() + 1;
-                    }
-                }
-            }
-            if (max_chromatic_number > graph.get_max_degree())
+            if (graph.max_chromatic_number_from_subgraphs() > graph.get_max_degree())
             {
                 cout << "True\n";
             }

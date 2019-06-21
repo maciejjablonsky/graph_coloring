@@ -7,23 +7,26 @@
 
 #include <cstdio>
 #include <iostream>
-#include "GraphVector.h"
 class Graph
 {
 private:
-    GraphVector subgraphs;
     size_t vertices_number;
     size_t max_degree;
     char *adjacency_matrix;
-    size_t number_of_subgraphs;
 
     bool neighbours(size_t current, size_t neighbour) const;
 
     bool zeros_on_diagonal(void) const;
 
-    Graph *create_subgraph_from_visited(size_t *visited_numbers, size_t visited_size);
+    // Graph *create_subgraph_from_visited(size_t *visited_numbers, size_t visited_size);
 
     void set_vertices_number(size_t n);
+
+    bool is_subgraph_complete(size_t *sub_vertices, size_t n);
+
+    bool is_subgraph_cycle(size_t *sub_vertices, size_t n);
+
+    size_t subgraph_max_degree(size_t *vertices, size_t n);
 public:
 
     Graph();
@@ -33,11 +36,11 @@ public:
     bool connected_graph(void) const;
     bool is_cycle(void) const;
     bool is_complete(void) const;
-    void load_subgraphs(void);
     size_t get_subgraphs_number(void);
-    Graph * subgraph(size_t index);
     size_t get_max_degree(void);
     size_t how_many_neighbours(size_t vertex);
+
+    size_t max_chromatic_number_from_subgraphs();
 
 };
 

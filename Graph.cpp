@@ -7,16 +7,12 @@
 #include "VerticesSet.h"
 #include "mem.h"
 
-Graph::Graph() : adjacency_matrix(nullptr), vertices_number(0), max_degree(0), number_of_subgraphs(0)
+Graph::Graph() : adjacency_matrix(nullptr), vertices_number(0), max_degree(0)
 {
 };
 
 Graph::~Graph(void)
 {
-    for (size_t i = 0; i < get_subgraphs_number(); ++i)
-    {
-        free(subgraphs.element_at(i));
-    }
     free(adjacency_matrix);
 }
 
@@ -49,7 +45,7 @@ bool Graph::connected_graph() const
     size_t vertex_count = 0;
     visited[0] = true;
     stack.push(0);
-    while (stack.empty() == false)
+    while (!stack.empty())
     {
         size_t current = stack.pop();
         vertex_count++;
@@ -110,93 +106,9 @@ bool Graph::zeros_on_diagonal() const
     return true;
 }
 
-
-void Graph::load_subgraphs(void)
-{
-    VerticesSet vertices(vertices_number);
-
-    Stack stack;
-
-    while (!vertices.empty())
-    {
-        bool *visited = vertices.get_empty_visited_array();
-        size_t vertex = vertices.next_vertex();
-        visited[vertex] = true;
-        if (how_many_neighbours(vertex) > 0)
-        {
-            stack.push(vertex);
-            while (!stack.empty())
-            {
-                size_t v = stack.pop();
-                for (size_t i = 0; i < vertices.get_size(); ++i)
-                {
-                    size_t u = vertices.next_vertex();
-                    if (!visited[u] && neighbours(v, u))
-                    {
-                        visited[u] = true;
-                        stack.push(u);
-                    }
-                }
-            }
-        }
-        vertices.go_to(vertex);
-        size_t *visited_vertices_numbers = vertices.get_numbers_of_visited_vertices(visited);
-
-        create_subgraph_from_visited(visited_vertices_numbers, vertices.count_visited_vertices(visited));
-        number_of_subgraphs++;
-        vertices.delete_visited_vertices(visited);
-        vertices.free_visited_vertices_numbers(visited_vertices_numbers);
-        vertices.free_visited(visited);
-
-    }
-}
-
-Graph *Graph::create_subgraph_from_visited(size_t *visited, size_t visited_size)
-{
-    Graph *new_graph = new Graph();
-    new_graph->set_vertices_number(visited_size);
-    new_graph->adjacency_matrix = calloc(char, visited_size * visited_size + 1);
-    size_t sub_v = (size_t) -1; // i know how it looks, but trust me
-    size_t visited_y = 0;
-    for (size_t super_v = 0; super_v < vertices_number; ++super_v)
-    {
-        if (visited[visited_y] == super_v)
-        {
-            sub_v++;
-            size_t sub_u = (size_t) -1; // this looks funny too
-            size_t visited_x = 0;
-            for (size_t super_u = 0; super_u < vertices_number; ++super_u)
-            {
-                if (visited[visited_x] == super_u)
-                {
-                    sub_u++;
-                    new_graph->adjacency_matrix[sub_v * visited_size + sub_u] = this->adjacency_matrix[
-                            super_v * vertices_number + super_u];
-                    visited_x++;
-                    if (sub_u + 1 == visited_size) { break; }
-                }
-            }
-            visited_y++;
-            if (sub_v + 1 == visited_size) { break; }
-        }
-    }
-    subgraphs.push_back(new_graph);
-    return new_graph;
-}
-
 void Graph::set_vertices_number(size_t n)
 {
     vertices_number = n;
-}
-
-size_t Graph::get_subgraphs_number(void)
-{
-    return number_of_subgraphs;
-}
-
-Graph *Graph::subgraph(size_t index)
-{
-    return subgraphs.element_at(index);
 }
 
 size_t Graph::get_max_degree(void)
@@ -224,4 +136,115 @@ size_t Graph::how_many_neighbours(size_t vertex)
         sum += adjacency_matrix[vertex * vertices_number + i] == '1' ? 1 : 0;
     }
     return sum;
+}
+
+size_t Graph::max_chromatic_number_from_subgraphs()
+{
+    size_t max_chromatic_number = 0;
+    VerticesSet vertices(vertices_number);
+
+    Stack stack;
+
+    while (!vertices.empty())
+    {
+        bool *b_visited = vertices.get_empty_visited_array();
+        size_t vertex = vertices.next_vertex();
+        b_visited[vertex] = true;
+        if (how_many_neighbours(vertex) > 0)
+        {
+            stack.push(vertex);
+            while (!stack.empty())
+            {
+                size_t v = stack.pop();
+                for (size_t i = 0; i < vertices.get_size(); ++i)
+                {
+                    size_t u = vertices.next_vertex();
+                    if (!b_visited[u] && neighbours(v, u))
+                    {
+                        b_visited[u] = true;
+                        stack.push(u);
+                    }
+                }
+            }
+        }
+        vertices.go_to(vertex);
+        size_t *visited_vertices = vertices.get_numbers_of_visited_vertices(b_visited);
+        size_t num_visited_vertices = vertices.count_visited_vertices(b_visited);
+        // check if it passes brooks
+        if ((num_visited_vertices % 2 == 1 && is_subgraph_cycle(visited_vertices, num_visited_vertices)) ||
+            is_subgraph_complete(visited_vertices, vertices.count_visited_vertices(b_visited)))
+        {
+            // then if subgraph.max_degree + 1 > max_chromatic_number
+            size_t max_degree = subgraph_max_degree(visited_vertices, num_visited_vertices);
+            if (max_degree + 1 > max_chromatic_number)
+            {
+                max_chromatic_number = max_degree + 1;
+            }
+        }
+
+        vertices.delete_visited_vertices(b_visited);
+        vertices.free_visited_vertices_numbers(visited_vertices);
+        vertices.free_visited(b_visited);
+
+    }
+    return max_chromatic_number;
+}
+
+bool Graph::is_subgraph_complete(size_t *sub_vertices, size_t n)
+{
+    size_t sum = 0;
+    for (size_t y = 0; y < n; ++y)
+    {
+        for (size_t x = 0; x < n; ++x)
+        {
+            sum += adjacency_matrix[sub_vertices[y] * vertices_number + sub_vertices[x]] == '1' ? 1 : 0;
+        }
+
+    }
+    if (sum != n * (n - 1)) { return false; }
+    bool zeros_on_diagonal = true;
+    for (size_t i = 0; i < n; ++i)
+    {
+        if (adjacency_matrix[sub_vertices[i] * (vertices_number + 1)] == '1')
+        {
+            zeros_on_diagonal = false;
+            break;
+        }
+    }
+
+    return zeros_on_diagonal;
+}
+
+bool Graph::is_subgraph_cycle(size_t *sub_vertices, size_t n)
+{
+    bool cycle_flag = true;
+    for (size_t y = 0; y < n; ++y)
+    {
+        size_t count = 0;
+        for (size_t x = 0; x < n; ++x)
+        {
+            if (neighbours(sub_vertices[y], sub_vertices[x]))
+            {
+                ++count;
+            }
+        }
+        cycle_flag = count == 2;
+        if (!cycle_flag) { break; }
+    }
+    return cycle_flag;
+}
+
+size_t Graph::subgraph_max_degree(size_t *vertices, size_t n)
+{
+    size_t sub_max_degree = 0;
+    for (int y = 0; y < n; ++y)
+    {
+        size_t current = 0;
+        for (int x = 0; x < n; ++x)
+        {
+            current += adjacency_matrix[vertices[y] * vertices_number + vertices[x]] == '1' ? 1 : 0;
+        }
+        if (current > sub_max_degree) { sub_max_degree = current; }
+    }
+    return sub_max_degree;
 }
